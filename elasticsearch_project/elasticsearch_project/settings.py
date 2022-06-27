@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_elasticsearch_dsl',
 
     'classroom.apps.ClassroomConfig',
+    'search.apps.SearchConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +133,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5
+}
+
+# connect to instance of elasticsearch ALREADY RUNNING at localhost:9200
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost:9200'
+    },
 }
