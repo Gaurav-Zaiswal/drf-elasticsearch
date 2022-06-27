@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from http.client import REQUEST_TIMEOUT
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,6 +139,7 @@ REST_FRAMEWORK = {
 # connect to instance of elasticsearch ALREADY RUNNING at localhost:9200
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
+        'hosts': 'http://127.0.0.1:9200',
+        'requestTimeout': 60000 
     },
 }

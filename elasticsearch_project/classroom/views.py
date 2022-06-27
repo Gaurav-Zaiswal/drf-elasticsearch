@@ -3,6 +3,7 @@ from django.http import Http404
 from django.shortcuts import render
 
 from rest_framework import status
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -25,10 +26,9 @@ class GetCreateClassroom(APIView):
         return Response(serialized_data.data, status=status.HTTP_200_OK)
 
 
-class ClassroomListView(APIView):
-    
+class ClassroomListView(APIView, LimitOffsetPagination):
+    # LimitOffsetPagination is defined in settings.py, hence one page wil return 5 items
     def get(self, request):
         qs = Classroom.objects.all()
         serialized_data = ClassroomSerializer(qs, many=True)
-
         return Response(serialized_data.data, status=status.HTTP_200_OK)
