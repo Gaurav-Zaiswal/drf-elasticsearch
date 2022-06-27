@@ -1,3 +1,4 @@
+from msilib.schema import Class
 from django.http import Http404
 from django.shortcuts import render
 
@@ -20,5 +21,14 @@ class GetCreateClassroom(APIView):
     def get(self, request, id):
         qs = self.get_classroom(id)
         serialized_data = ClassroomSerializer(qs)
+
+        return Response(serialized_data.data, status=status.HTTP_200_OK)
+
+
+class ClassroomListView(APIView):
+    
+    def get(self, request):
+        qs = Classroom.objects.all()
+        serialized_data = ClassroomSerializer(qs, many=True)
 
         return Response(serialized_data.data, status=status.HTTP_200_OK)
