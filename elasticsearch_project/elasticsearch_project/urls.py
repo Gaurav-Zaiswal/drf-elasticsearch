@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from classroom import urls as classroom_urls
+from search import urls as search_urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('classroom/', include('classroom.urls'))
+    path('classroom/', include(classroom_urls)),
+    path('search/', include(search_urls))
 ]

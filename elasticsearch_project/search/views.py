@@ -10,7 +10,7 @@ from classroom.documents import ClassroomDocument
 # Create your views here.
 class SearchClassroom(APIView, LimitOffsetPagination):
     serializer_class = ClassroomSerializer
-    documenent_class = ClassroomDocument
+    document_class = ClassroomDocument
 
     def generate_q_expression(self, query):
         return Q(
